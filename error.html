@@ -184,7 +184,7 @@ button:hover {
   // Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyDSX2MgonIBQ_PyjsDBUco4dyN9pKH475Q",
-    authDomain: "https://zenact.github.io/error.html",
+    authDomain: "zenact-c66fd.firebaseapp.com",
     databaseURL: "https://zenact-c66fd.firebaseio.com",
     projectId: "zenact-c66fd",
     storageBucket: "",
@@ -195,21 +195,8 @@ button:hover {
   firebase.initializeApp(firebaseConfig);
 
   function saveToFirebase(email) {
-    var emailObject = {
-        email: email
-    };
-
-    firebase.database().ref('subscription-entries').push().set(emailObject)
-        .then(function(snapshot) {
-            // success(); // some success method
-            console.log("Success")
-        }, function(error) {
-            console.log('error' + error);
-            // error(); // some error method
-        });
-}
-
-saveToFirebase(email);
+    firebase.database().ref('subscription-entries').push().set({email: email});
+  };
 </script>
 
 </body>
