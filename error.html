@@ -154,26 +154,63 @@ button:hover {
 
 }
 </style>
-<body>
+<body >
 
-<form action="/action_page.php" style="border:1px solid #ccc">
+<form style="border:1px solid #ccc">
   <div class="container">
-    <hr>
+    <!-- <hr> -->
 
-    <label for="name" style="left"><b>Name</b></label>
-    <input type="text" placeholder="Enter Name" name="name" required style="right">
+    <!-- <label for="name" style="left"><b>Name</b></label> -->
+    <!-- <input type="text" placeholder="Enter Name" name="name" required style="right" id="name"> -->
 
-    <br/>
+    <!-- <br/> -->
     <label for="email" style="left"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" required style="right">
+    <input type="text" placeholder="Enter Email" name="email" required style="right" id="email">
 
 
     <div class="clearfix">
       <br/>
-      <button type="submit" class="signupbtn">Sign Up</button>
+      <button type="submit" class="signupbtn" onclick="saveToFirebase(document.getElementById('email').value)">Sign Up</button>
     </div>
   </div>
 </form>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDSX2MgonIBQ_PyjsDBUco4dyN9pKH475Q",
+    authDomain: "https://zenact.github.io/error.html",
+    databaseURL: "https://zenact-c66fd.firebaseio.com",
+    projectId: "zenact-c66fd",
+    storageBucket: "",
+    messagingSenderId: "668986833556",
+    appId: "1:668986833556:web:044af9dd7473478b"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  function saveToFirebase(email) {
+    var emailObject = {
+        email: email
+    };
+
+    firebase.database().ref('subscription-entries').push().set(emailObject)
+        .then(function(snapshot) {
+            // success(); // some success method
+            console.log("Success")
+        }, function(error) {
+            console.log('error' + error);
+            // error(); // some error method
+        });
+}
+
+saveToFirebase(email);
+</script>
 
 </body>
 </html>
