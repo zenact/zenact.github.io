@@ -136,13 +136,13 @@ button:hover {
 }
 
 /* Clear floats */
-.clearfix::after {
+/* .clearfix::after {
   content: "";
   clear: both;
   display: table;
   margin: 0 auto;
 
-}
+} */
 
 /* Change styles for cancel button and signup button on extra small screens */
 @media screen and (max-width: 300px) {
@@ -156,7 +156,10 @@ button:hover {
 </style>
 <body >
 
-<form action="thank-you.html">
+<!-- <form action="thank-you.html"> -->
+  
+    <form class="gform pure-form pure-form-stacked" method="POST" data-email="example@email.net"
+    action="https://script.google.com/macros/s/AKfycbxaQMsedbm3tXF2lixXI0u0KOQ-5r1_Sb7X9MYfqYOA-X57nMk/exec">
   <div class="container">
     <!-- <hr> -->
 
@@ -164,40 +167,25 @@ button:hover {
     <!-- <input type="text" placeholder="Enter Name" name="name" required style="right" id="name"> -->
 
     <!-- <br/> -->
-    <label for="email" style="left"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" required style="right" id="email">
+    <fieldset class="pure-group">
+      <label for="email" style="left"><b>Email</b></label>
+      <input id="email" name="email" type="email" value="" style="right" required placeholder="your.name@email.com"/>
+    </fieldset>
+
+    <!-- <label for="email" style="left"><b>Email</b></label>
+    <input type="text" placeholder="your.name@email.com" required style="right" id="email"> -->
 
 
     <div class="clearfix">
       <br/>
-      <button type="submit" class="signupbtn" onclick="saveToFirebase(document.getElementById('email').value)">Sign Up</button>
+      <button class="signupbtn" formaction='thank-you.html'>
+          <i class="fa fa-paper-plane"></i>&nbsp;Sign up</button>
+      <!-- <button type="submit" class="signupbtn" id="sign_up">Sign Up</button> -->
     </div>
   </div>
 </form>
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#config-web-app -->
-
-<script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyDSX2MgonIBQ_PyjsDBUco4dyN9pKH475Q",
-    authDomain: "zenact-c66fd.firebaseapp.com",
-    databaseURL: "https://zenact-c66fd.firebaseio.com",
-    projectId: "zenact-c66fd",
-    storageBucket: "",
-    messagingSenderId: "668986833556",
-    appId: "1:668986833556:web:044af9dd7473478b"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-
-  function saveToFirebase(email) {
-    firebase.database().ref('subscription-entries').push().set({email: email});
-  };
-</script>
+<!-- Submit the Form to Google Using "AJAX" -->
+<script data-cfasync="false" src="assets/js/form-submission-handler.js"></script>
 
 </body>
 </html>
