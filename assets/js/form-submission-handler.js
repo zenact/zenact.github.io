@@ -84,7 +84,13 @@
     var encoded = Object.keys(data).map(function(k) {
         return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
     }).join('&');
+
+  
     xhr.send(encoded);
+
+    // window.location.href = "thank-you.html";
+    // console.log("made it here");
+    setTimeout(function(){ window.location.href = "thank-you.html"; }, 250);
   }
   
   function loaded() {
